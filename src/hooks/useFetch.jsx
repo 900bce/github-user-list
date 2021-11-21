@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 function useFetch({ apiUrl }) {
   const [data, setData] = useState([]);
-  const [link, setLink] = useState('');
 
   const fetchData = async (apiUrl) => {
     const response = await fetch(apiUrl);

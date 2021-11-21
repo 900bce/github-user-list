@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useFetch from '../hooks/useFetch';
 import { Container, Image, Heading, Tr, Td } from '@chakra-ui/react';
 import Table from '../components/Table';
+import { Link } from 'react-router-dom';
+import { apiUrl } from '../configs/api';
 
 const tableHeader = [
   {
@@ -20,12 +22,10 @@ const tableHeader = [
   },
 ];
 
-const apiUrl = 'https://api.github.com/users?per_page=100';
-
 function List() {
   const [list, setList] = useState([]);
 
-  const apiResponse = useFetch({ apiUrl });
+  const apiResponse = useFetch({ apiUrl: `${apiUrl}/users?per_page=100` });
 
   useEffect(() => {
     setList(apiResponse);
@@ -38,8 +38,8 @@ function List() {
       </Heading>
 
       <Table tableHeader={tableHeader}>
-        {apiResponse.length > 0 ? (
-          apiResponse.map((user, index) => (
+        {list.length > 0 ? (
+          list.map((user, index) => (
             <Tr key={user.id}>
               <Td>{index + 1}</Td>
               <Td>
@@ -52,7 +52,9 @@ function List() {
                   />
                 </a>
               </Td>
-              <Td>{user.login}</Td>
+              <Td>
+                <Link to={`detail/${user.login}`}>{user.login}</Link>
+              </Td>
               <Td textAlign="center">{user.site_admin ? 'Y' : 'N'}</Td>
             </Tr>
           ))
