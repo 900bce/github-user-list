@@ -1,7 +1,7 @@
 # github-user-list
 Build an Website which shows the GitHub users in a List
 
-[demo](https://900bce.github.io/github-user-list/)
+[demo](https://epic-raman-a45af8.netlify.app/)
 
 ## Built With
 
